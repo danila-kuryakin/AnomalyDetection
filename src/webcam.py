@@ -33,9 +33,9 @@ class Res18Feature(nn.Module):
 
 
 def run_test():
-    # model_path = '../models/epoch28_acc0.8625.pth'
+    model_path = '../models/RAF_basic_acc0.8625.pth'
     # model_path = '../models/epoch17_acc0.625_compound2.pth'
-    model_path = '../models/FER_acc0.6802.pth'
+    # model_path = '../models/FER_acc0.6802.pth'
 
     labels_rafb = {0: 'Surprise',
               1: 'Fear',
@@ -126,7 +126,7 @@ def run_test():
 
                     h, w, _ = image.shape
                     pos = (w - x2, y1)
-                    text_label = '%s %.2f' % (labels_rafb[predicts.item()], outputs.cpu()[0][predicts.item()].item()/7*100)
+                    text_label = labels_rafb[predicts.item()]
 
                     flip_image = cv2.flip(image, 1)
 

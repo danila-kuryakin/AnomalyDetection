@@ -76,17 +76,6 @@ def run_test():
               5: 'Anger',
               6: 'Neutral'}
 
-
-    # labels = {0: 'Angry',
-    #           1: 'Happy',
-    #           2: 'Fear',
-    #           3: 'Disgust',
-    #           4: 'Sad',
-    #           5: 'Surprise',
-    #           6: 'Neutral'}
-
-    # 0 = Angry, 1 = Disgust, 2 = Fear, 3 = Happy, 4 = Sad, 5 = Surprise, 6 = Neutral.
-
     res18_raf = init(RAF_path)
     res18_fer = init(FER_path)
 

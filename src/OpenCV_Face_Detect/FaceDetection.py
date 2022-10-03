@@ -21,7 +21,7 @@ while cap.isOpened():
 
     if len(faces) > 0:
         faces = cv2.resize(faces, (100, 100))
-        print(len(faces))
+        # print(len(faces))
         cv2.imshow("face", cv2.flip(faces, 1))
     cv2.imshow('img', cv2.flip(image, 1))
     if cv2.waitKey(5) & 0xFF == 27:
