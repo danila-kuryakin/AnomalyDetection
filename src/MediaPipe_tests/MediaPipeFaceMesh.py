@@ -24,6 +24,9 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_face_mesh = mp.solutions.face_mesh
 
+font = cv2.FONT_HERSHEY_PLAIN
+font_scale = 0.7
+font_thickness = 1
 
 # For webcam input:
 drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
@@ -92,9 +95,6 @@ with mp_face_mesh.FaceMesh(
             landmark.x = (landmark.x - minX_normalized) * coefX + 0.025
             landmark.y = (landmark.y - minY_normalized) * coefY + 0.025
 
-
-        cv2.circle(zeros, (int(face_landmarks.landmark[0].x*w), int(face_landmarks.landmark[0].y*h)), 4, (0, 0, 255), -1)
-
         mp_drawing.draw_landmarks(
             image=zeros,
             landmark_list=face_landmarks,
@@ -111,10 +111,21 @@ with mp_face_mesh.FaceMesh(
             connection_drawing_spec=mp_drawing_styles
             .get_default_face_mesh_contours_style())
 
-    # Flip the image horizontally for a selfie-view display.
+        # draw point numbers
+        zrF = cv2.flip(zeros, 1)
+        for i, (lm) in enumerate(face_landmarks.landmark):
+            cv2.putText(zrF,
+                        str(i),
+                        (int(w - lm.x*w), int(lm.y*h)),
+                        font,
+                        font_scale,
+                        (0, 0, 255),
+                        font_thickness)
+            # if i > 30:
+            #     break
 
-    zrF = cv2.flip(zeros, 1)
-    zrR = cv2.resize(zrF, (300, 270))
+
+    zrR = cv2.resize(zrF, (900, 830))
     cv2.imshow('Mask', zrR)
 
     imF = cv2.flip(image, 1)
